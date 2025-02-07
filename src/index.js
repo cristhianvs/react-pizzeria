@@ -1,10 +1,10 @@
 // Importamos las herramientas necesarias de React
 // React es como el cerebro que nos permite crear nuestra aplicación
-import React from 'react';
+import React from "react";
 // ReactDOM es la herramienta que nos permite mostrar nuestra aplicación en el navegador
-import ReactDOM from 'react-dom/client';
+import ReactDOM from "react-dom/client";
 
-import { pizzaData } from './data.js';
+import { pizzaData } from "./data.js";
 
 // Creamos nuestra primera función llamada App
 // Esta función es como un contenedor principal que mostrará todo lo que queremos ver en pantalla
@@ -13,41 +13,59 @@ function App() {
   // El return indica qué queremos mostrar en la pantalla
   return (
     <div className="container">
-      <header className="header">
-        <h1>Fast React Pizza Co.</h1>
-      </header>
-      <main className="menu">
-        <h2>Nuestro Menú</h2>
-        <ul className="pizzas">
-          <Pizza nombre="Pizza Margherita" />
-          <Pizza nombre="Pizza Spinaci" />
-          <Pizza nombre="Pizza Funghi" />
-        </ul>
-      </main>
+      <Header />
+      <Menu />
+      <Footer />
     </div>
   );
 }
 
-function Pizza({ nombre }) {
-  const pizza = pizzaData.find((p) => p.name === nombre);
-  
-  if (!pizza) return <p>¡Pizza no encontrada!</p>;
-
+function Pizza() {
   return (
-    <li className={`pizza ${pizza.soldOut ? "sold-out" : ""}`}>
-      <img src={pizza.photoName} alt={pizza.name} />
-      <div>
-        <h3>{pizza.name}</h3>
-        <p>{pizza.ingredients}</p>
-        <span>{pizza.price + 2}€</span>
-      </div>
-    </li>
+    <div className="pizza">
+      <img src="pizzas/spinaci.jpg" alt="Pizza Spinaci" />
+      <h2>Pizza Spinaci</h2>
+      <p>
+        This is a pizza with spinach, mozzarella, and tomatoes. It is a
+        delicious pizza.
+      </p>
+      <span>20€</span>
+    </div>
+  );
+}
+
+function Header() {
+  return (
+    <header className="header">
+      <h1>Fast React Pizza Co.</h1>
+    </header>
+  );
+}
+
+function Menu() {
+  return (
+    <div className="menu">
+      <h2>Nuestro Menú</h2>
+      <ul className="pizzas">
+        <Pizza />
+        <Pizza />
+      </ul>
+    </div>
+  );
+}
+
+function Footer() {
+  //return React.createElement("footer", null, "We are currently open");
+  return (
+    <footer className="footer">
+      {new Date().toLocaleTimeString()}. We are currently open
+    </footer>
   );
 }
 
 // Aquí le decimos a React dónde queremos mostrar nuestra aplicación
 // Buscamos un elemento en nuestro archivo HTML que tenga el id 'root'
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 
 // Finalmente, le decimos a React que muestre nuestra aplicación
 
