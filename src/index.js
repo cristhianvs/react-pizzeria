@@ -4,10 +4,12 @@ import React from "react";
 // ReactDOM es la herramienta que nos permite mostrar nuestra aplicación en el navegador
 import ReactDOM from "react-dom/client";
 
-import { pizzaData } from "./data.js";
+import "./index.css";
+
 
 // Creamos nuestra primera función llamada App
 // Esta función es como un contenedor principal que mostrará todo lo que queremos ver en pantalla
+
 
 function App() {
   // El return indica qué queremos mostrar en la pantalla
@@ -20,39 +22,54 @@ function App() {
   );
 }
 
-function Pizza() {
-  return (
-    <div className="pizza">
-      <img src="pizzas/spinaci.jpg" alt="Pizza Spinaci" />
-      <h2>Pizza Spinaci</h2>
-      <p>
-        This is a pizza with spinach, mozzarella, and tomatoes. It is a
-        delicious pizza.
-      </p>
-      <span>20€</span>
-    </div>
-  );
-}
 
 function Header() {
+  //const style = { color: "red", fontSize: "48px", textTransform: "uppercase" };
+  const style = {};
   return (
     <header className="header">
-      <h1>Fast React Pizza Co.</h1>
+      <h1 style={style} className="header">Fast React Pizza Co.</h1>
     </header>
   );
 }
 
 function Menu() {
   return (
-    <div className="menu">
+    <main className="menu">
       <h2>Nuestro Menú</h2>
       <ul className="pizzas">
-        <Pizza />
-        <Pizza />
+        <Pizza 
+        name="Pizza Spinaci"
+        ingredients="Tomato and mozarella"
+        price={10}
+        photoName="pizzas/spinaci.jpg"
+        />
+        <Pizza
+        name="Pizza Funghi"
+        ingredients="Tomato and mozarella and mushrooms"
+        price={12}
+        photoName="pizzas/funghi.jpg"
+        />
       </ul>
-    </div>
+    </main>
+
   );
 }
+
+function Pizza(props) {
+  return (
+    <div className="pizza">
+      <img src={props.photoName} alt={props.name}/>
+      <div>
+        <h3>{props.name}</h3>
+        <p>{props.ingredients}</p>
+        <span>{props.price + 2}</span>
+      </div>
+    </div>
+
+  );
+}
+
 
 function Footer() {
   //return React.createElement("footer", null, "We are currently open");
